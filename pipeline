@@ -1,28 +1,21 @@
 pipeline {
-         agent any {
-                    label{
-                           label "build-in"
-                            }
-                   }
-
-          stages {
-                 stage('build'){
-          step {   
-          git "https://github.com/Sagar-Nakade/game-of-life.git"
-
+         agent any 
+           stages {
+                 stage ('stage-one') {
+                    steps {
+                            echo "hey i am sagar"
+                     }       
+                 }          
+                 stage ('stage-two') {
+                   steps {
+                          echo "i am from nagpur"
+                    }
+                 }      
+                 stage ('stage-three') {
+                   steps {
+                          echo "i am Mechanical engg"
+                    }
                  }
-          }
-            stage (remove) { 
-             step {
-              sh "rm -rf /root/.m2/repository"
-                }
-         }
-            stage(compile) {
-                            steps { 
-                      sh "mvn clean install"
-                } 
-              } 
-            }
-         }
-       }
-     }
+             }
+}             
+             
