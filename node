@@ -1,0 +1,26 @@
+pipeline {
+      agent {
+          label { 
+                 label "built-in"
+                 customWorkspace "/mnt/ass-3"
+           }        
+       } 
+      stages {
+            stage ("on-master") {
+               steps {
+                       sh "mvn clean install"
+               }
+            }   
+            stage ("on-slave") {
+            agent {      
+               label {
+                      label "QA"
+                      customWorkspace "/mnt/slave"
+                }
+             }
+                 steps {
+                         sh "cp -r /mnt/slave/gameoflife.war"
+                  }
+              }
+         }     
+ }        
