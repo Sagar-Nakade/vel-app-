@@ -1,0 +1,28 @@
+pipeline {
+         agent any {
+                    label{
+                           label "build-in"
+                            }
+                   }
+
+          stages {
+                 stage('build'){
+          step {   
+          git "https://github.com/Sagar-Nakade/game-of-life.git"
+
+                 }
+          }
+            stage (remove) { 
+             step {
+              sh "rm -rf /root/.m2/repository"
+                }
+         }
+            stage(compile) {
+                            steps { 
+                      sh "mvn clean install"
+                } 
+              } 
+            }
+         }
+       }
+     }
